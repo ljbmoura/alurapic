@@ -1,0 +1,4 @@
+customValidation=true
+eclipse.preferences.version=1
+enabledValidators=org.eclipse.wst.html.core.internal.validation.HTMLValidator,
+excludePatterns.additions=src/karma.conf.js,
