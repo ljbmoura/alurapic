@@ -1,3 +1,23 @@
+# Instalações(e algumas correções)
+
+## ANGULAR CLI
+No pasta do projeto da Alurapic executar:
+
+    npm install -g @angular/cli@6.0.7
+
+    ng --version
+
+## RXJS
+No pasta do projeto da Alurapic instalar a versão 6.3.0 do RXJS 
+
+    npm install rxjs@6.3.0 --save
+
+## API (dados)
+No pasta do projeto da API, atualizar a versão do `sqlite3`
+
+    npm install sqlite3
+
+
 # Alurapic
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.7.
