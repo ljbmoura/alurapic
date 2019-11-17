@@ -17,6 +17,8 @@ No pasta do projeto da API, atualizar a versão do `sqlite3`
 
     npm install sqlite3
 
+## npm install bootstrap@4.1.1
+baixa o `bootstrap` e o instala dentro do projeto como uma dependência, configurando-a em `package.json`.
 
 # Alurapic
 
