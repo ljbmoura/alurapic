@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Component({ // Decorator
   selector: 'app-root',
@@ -8,14 +9,15 @@ import { Component } from '@angular/core';
 export class AppComponent { // classe ECMAScript6
   title = 'alurapic';
 
-  photos = [
-    {
-      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Sultan_the_Barbary_Lion.jpg/440px-Sultan_the_Barbary_Lion.jpg',
-      description: 'Leão'
-    }
-    , {
-      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Lioness_Etosha_NP.jpg/500px-Lioness_Etosha_NP.jpg'
-      , description: 'Leoa'
-    }
-  ];
+  photos: Object[] = [];
+
+  constructor(http: HttpClient ) {
+    http
+      .get<Object[]>('http://localhost:3000/flavio/photos')
+      .subscribe( // Observable do RxJS
+         (dadosObservados) => { this.photos = dadosObservados; }
+         , (erroObservado) => { console.error(erroObservado.message); }
+      );
+    console.log(http);
+  }
 }
