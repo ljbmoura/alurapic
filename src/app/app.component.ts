@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { PhotoService } from './photos/photo/photo.service';
+import { Photo } from './photos/photo/photo';
 
 @Component({ // Decorator
   selector: 'app-root',
@@ -9,15 +10,15 @@ import { HttpClient } from '@angular/common/http';
 export class AppComponent { // classe ECMAScript6
   title = 'alurapic';
 
-  photos: Object[] = [];
+  photos: Photo[] = [];
 
-  constructor(http: HttpClient ) {
-    http
-      .get<Object[]>('http://localhost:3000/flavio/photos')
-      .subscribe( // Observable do RxJS
-         (dadosObservados) => { this.photos = dadosObservados; }
-         , (erroObservado) => { console.error(erroObservado.message); }
+  constructor(service: PhotoService ) {
+      service
+        .listFromUser('flavio')
+        .subscribe( // Observable do RxJS
+          (dadosObservados) => { this.photos = dadosObservados; }
+          , (erroObservado) => { console.error(erroObservado.message); }
       );
-    console.log(http);
+
   }
 }
