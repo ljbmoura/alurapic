@@ -11,6 +11,7 @@ import { TokenService } from '../token/token.service';
 export class UserService {
 
     private userSubject: Subject<User> = new BehaviorSubject<User>(null);
+    private nomeUsuario: string;
 
     constructor(private tokenGestao: TokenService) {
         // tslint:disable-next-line: no-unused-expression
@@ -34,7 +35,16 @@ export class UserService {
     private decodeAndNotify() {
         const token = this.tokenGestao.getToken();
         const usuario = jwt_decode(token) as User;
+        this.nomeUsuario = usuario.name;
         this.userSubject.next(usuario);
+    }
+
+    isLoggeg () {
+        return this.tokenGestao.hasToken();
+    }
+
+    getUserName(): string {
+        return this.nomeUsuario;
     }
 
 }

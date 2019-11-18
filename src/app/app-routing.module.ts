@@ -8,10 +8,12 @@ import { PhotosModule } from './photos/photos.module';
 import { ErrorsModule } from './errors/errors.module';
 import { SigninComponent } from './home/signin/signin.component';
 import { HomeModule } from './home/home.module';
+import { AuthGuard } from './core/auth/auth.guard';
 
 const routes: Routes = [
-    { path: '',
-      component: SigninComponent
+    { path: ''
+      , component: SigninComponent
+      , canActivate: [AuthGuard]
     },
 
     { path: 'user/:userName',
