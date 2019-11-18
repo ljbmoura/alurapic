@@ -20,6 +20,11 @@ No pasta do projeto da API, atualizar a versão do `sqlite3`
 ## npm install bootstrap@4.1.1
 baixa o `bootstrap` e o instala dentro do projeto como uma dependência, configurando-a em `package.json`.
 
+## Font Awesome 
+[Font Awesome](https://fontawesome.com/): possui ícones, etc.
+
+Instalação: `npm install font-awesome@4.7.0`
+
 # Alurapic
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.7.
