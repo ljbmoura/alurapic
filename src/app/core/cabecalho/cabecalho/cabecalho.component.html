@@ -7,7 +7,9 @@
       <a (click)="logout()">(Logout)</a>
     </div>
     <ng-template #login>
-      <span class="navbar-text">Por favor, faça log-in</span>
+      <span class="navbar-text">
+          <a [routerLink]="['/']">Por favor, faça log-in</a>
+        </span>
     </ng-template>
   </nav>
 </header>
