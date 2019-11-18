@@ -10,16 +10,10 @@ import { Subject, Observable } from 'rxjs';
 })
 export class CabecalhoComponent {
 
-  user: User;
   user$: Observable<User>;
 
   constructor(private usuariosGestao: UserService) {
     this.user$ = this.usuariosGestao.getUser();
-    this.user$.subscribe({
-        next: (user: User) => { this.user = user; }
-      , error: (msg) => { console.log(msg); }
-      }
-    );
   }
 
 }
