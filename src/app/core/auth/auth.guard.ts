@@ -18,6 +18,7 @@ export class AuthGuard implements CanActivate {
         : boolean | Observable<boolean> | Promise<boolean> {
 
         if (this.userService.isLoggeg()) {
+            console.log(`rota "${state.url}" não permitida para usuário com sessão ativa`);
             this.router.navigate(['user', this.userService.getUserName()]);
             return false;
         }
