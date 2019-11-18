@@ -2,13 +2,15 @@
 <form [formGroup]="loginForm" class="form mt-4" (submit)="login()" >
 
     <div class="form-group">
-        <input formControlName="userName" class="form-control" placeholder="user name" autofocus minlength="5" autocomplete="username"> 
+        <input class="form-control" placeholder="user name" autofocus minlength="5" autocomplete="username"
+            formControlName="userName" #userNameInput> 
         <ap-vmessage *ngIf="loginForm.get('userName').errors?.required" text="User name is required"></ap-vmessage>
         <ap-vmessage *ngIf="loginForm.get('userName').errors?.minlength" text="Minimun length of 6"></ap-vmessage>
     </div>
 
     <div class="form-group">    
-        <input formControlName="password" class="form-control" placeholder="password" type="password" required autocomplete="current-password">
+        <input class="form-control" placeholder="password" type="password" required autocomplete="current-password"
+            formControlName="password">
         <ap-vmessage *ngIf="loginForm.get('password').errors?.required" text="Password is required"></ap-vmessage>
         <ap-vmessage *ngIf="loginForm.get('password').errors?.minlength" text="Minimun length of 3"></ap-vmessage>
     </div>
