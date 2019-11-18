@@ -29,6 +29,9 @@ export class SigninComponent implements OnInit {
             , password: ['123', Validators.minLength(3)]
         });
         this.executandoNoNavagador = this.platformDetector.isPlatformBrowser();
+        if (this.executandoNoNavagador) {
+            this.userNameInput.nativeElement.focus();
+        }
     }
 
     login () {

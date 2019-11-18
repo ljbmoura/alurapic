@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { lowerCaseValidator } from 'src/app/shared/validators/lower-case.validator';
 import { SignUpService } from './signup.service';
 import { UsuarioReg } from './usuarioReg';
+import { PlatformDetectorService } from 'src/app/core/platform/platform-detector.service';
 
 @Component({
     // selector: denecessário pois este compenente terá escopo de página
@@ -11,9 +12,11 @@ import { UsuarioReg } from './usuarioReg';
 export class SignUpComponent implements OnInit{
 
     signupForm: FormGroup;
+    @ViewChild ('emailInput') emailInput: ElementRef<HTMLInputElement>;
 
     constructor( private formBuilder: FormBuilder
-        , private singupService: SignUpService) {
+        , private singupService: SignUpService
+        , private platformDetector: PlatformDetectorService) {
     }
 
     signup () {
@@ -22,6 +25,10 @@ export class SignUpComponent implements OnInit{
     }
 
     ngOnInit(): void {
+        if (this.platformDetector.isPlatformBrowser()) {
+            this.emailInput.nativeElement.focus();
+        }
+
         this.signupForm = this.formBuilder.group({
             email: ['', [
                 Validators.required

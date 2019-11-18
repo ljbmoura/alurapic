@@ -10,15 +10,20 @@ import { SigninComponent } from './home/signin/signin.component';
 import { HomeModule } from './home/home.module';
 import { AuthGuard } from './core/auth/auth.guard';
 import { SignUpComponent } from './home/signup/signup.component';
+import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
     { path: ''
-      , component: SigninComponent
+      , component: HomeComponent
       , canActivate: [AuthGuard]
-    }
-
-    , { path: 'signup',
-      component: SignUpComponent
+      , children: [
+        { path: ''
+          , component: SigninComponent
+        }
+        , { path: 'signup',
+          component: SignUpComponent
+        }
+      ]
     }
 
     , { path: 'user/:userName',
