@@ -7,6 +7,7 @@ import { PhotoFormModule } from './photo-form/photo-form.module';
   imports: [
     PhotoListModule
     , PhotoFormModule
+    // , CardModule
   ]
 })
 export class PhotosModule { }
