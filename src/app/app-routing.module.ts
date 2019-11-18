@@ -9,25 +9,30 @@ import { ErrorsModule } from './errors/errors.module';
 import { SigninComponent } from './home/signin/signin.component';
 import { HomeModule } from './home/home.module';
 import { AuthGuard } from './core/auth/auth.guard';
+import { SignUpComponent } from './home/signup/signup.component';
 
 const routes: Routes = [
     { path: ''
       , component: SigninComponent
       , canActivate: [AuthGuard]
-    },
+    }
 
-    { path: 'user/:userName',
+    , { path: 'signup',
+      component: SignUpComponent
+    }
+
+    , { path: 'user/:userName',
       component: PhotoListComponent,
       resolve: {
         fotos: PhotoListResolver
       }
-    },
+    }
 
-    { path: 'p/add',
+    , { path: 'p/add',
       component: PhotoFormComponent
-    },
+    }
 
-    { path: '**',
+    , { path: '**',
       component: NotFoundComponent
     }
 ];
