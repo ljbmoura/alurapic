@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AbstractControl } from '@angular/forms';
 import { debounceTime, switchMap, first, map } from 'rxjs/operators';
+import { UsuarioReg } from './usuarioReg';
+import { Router } from '@angular/router';
 
 const API = 'http://localhost:3000';
 
@@ -9,8 +11,18 @@ const API = 'http://localhost:3000';
     providedIn: 'root'
 })
 export class SignUpService {
+    constructor(private clienteHttp: HttpClient
+        , private router: Router) {}
 
-    constructor(private clienteHttp: HttpClient) {}
+    signup(novoUsuario: UsuarioReg) {
+        return this.clienteHttp.post(`${API}/user/signup`, novoUsuario)
+            .subscribe(
+                () => {
+                    this.router.navigate(['']);
+                },
+                err => console.log(err)
+            );
+    }
 
     checkUserNameTaken (userName: string) {
         return this.clienteHttp.get(API + '/user/exists/' + userName);

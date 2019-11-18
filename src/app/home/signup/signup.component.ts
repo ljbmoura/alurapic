@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { lowerCaseValidator } from 'src/app/shared/validators/lower-case.validator';
 import { SignUpService } from './signup.service';
+import { UsuarioReg } from './usuarioReg';
 
 @Component({
     // selector: denecessário pois este compenente terá escopo de página
@@ -13,6 +14,11 @@ export class SignUpComponent implements OnInit{
 
     constructor( private formBuilder: FormBuilder
         , private singupService: SignUpService) {
+    }
+
+    signup () {
+        const novoUsuario = this.signupForm.getRawValue() as UsuarioReg;
+        this.singupService.signup(novoUsuario);
     }
 
     ngOnInit(): void {
