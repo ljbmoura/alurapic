@@ -6,39 +6,30 @@ import { NotFoundComponent } from './errors/not-found/not-found.component';
 import { PhotoListResolver } from './photos/photo-list/photo-list.resolver';
 import { PhotosModule } from './photos/photos.module';
 import { ErrorsModule } from './errors/errors.module';
-import { SigninComponent } from './home/signin/signin.component';
-import { HomeModule } from './home/home.module';
-import { AuthGuard } from './core/auth/auth.guard';
-import { SignUpComponent } from './home/signup/signup.component';
-import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
-    { path: ''
-      , component: HomeComponent
-      , canActivate: [AuthGuard]
-      , children: [
-        { path: ''
-          , component: SigninComponent
+    {
+        path: '',
+        pathMatch: 'full',
+        // redirectTo: 'home'
+        loadChildren: './home/home.module#HomeModule'
+    }
+    // , {
+    //     path: 'home',
+    //     loadChildren: './home/home.module#HomeModule'
+    //   }
+    , {
+        path: 'user/:userName',
+        component: PhotoListComponent,
+        resolve: {
+            fotos: PhotoListResolver
         }
-        , { path: 'signup',
-          component: SignUpComponent
-        }
-      ]
-    }
-
-    , { path: 'user/:userName',
-      component: PhotoListComponent,
-      resolve: {
-        fotos: PhotoListResolver
-      }
-    }
-
-    , { path: 'p/add',
-      component: PhotoFormComponent
-    }
-
-    , { path: '**',
-      component: NotFoundComponent
+    }, {
+        path: 'p/add',
+        component: PhotoFormComponent
+    }, {
+        path: '**',
+        component: NotFoundComponent
     }
 ];
 
@@ -47,7 +38,6 @@ const routes: Routes = [
     RouterModule.forRoot(routes, {useHash: true})
     , ErrorsModule
     , PhotosModule
-    , HomeModule
   ]
   , exports: [RouterModule]
 })
