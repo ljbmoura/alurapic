@@ -58,7 +58,7 @@ export class SigninComponent implements OnInit {
                     this.userNameInput.nativeElement.focus();
                 }
             }
-        )
+        );
     }
 
 }

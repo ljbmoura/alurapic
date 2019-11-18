@@ -7,9 +7,7 @@ import { Router } from '@angular/router';
 
 const API = 'http://localhost:3000';
 
-@Injectable({
-    providedIn: 'root'
-})
+@Injectable()
 export class SignUpService {
     constructor(private clienteHttp: HttpClient
         , private router: Router) {}
