@@ -12,7 +12,9 @@ import { ActivatedRoute } from '@angular/router';
 export class PhotoListComponent implements OnInit {
 
   photos: Photo[] = [];
-  constructor(private photoService: PhotoService, private activatedRoute: ActivatedRoute) { }
+  constructor(private photoService: PhotoService, private activatedRoute: ActivatedRoute) {
+    console.log('construtor de PhotoListComponent executado.');
+  }
 
   ngOnInit(): void {
 
@@ -20,7 +22,8 @@ export class PhotoListComponent implements OnInit {
     this.photoService
       .listFromUser(userName)
       .subscribe( // Observable do RxJS
-        (dadosObservados) => { this.photos = dadosObservados; console.log(`PhotoListComponent: ${this.photos.length}`); }
+        (dadosObservados) => { this.photos = dadosObservados;
+          console.log(`photoService.listFromUser retornou ${this.photos.length} itens.`); }
         , (erroObservado) => { console.error(erroObservado.message); }
       );
   }
