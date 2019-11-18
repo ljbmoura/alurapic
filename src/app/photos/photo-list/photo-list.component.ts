@@ -20,7 +20,7 @@ export class PhotoListComponent implements OnInit {
     this.photoService
       .listFromUser(userName)
       .subscribe( // Observable do RxJS
-        (dadosObservados) => { this.photos = dadosObservados; }
+        (dadosObservados) => { this.photos = dadosObservados; console.log(`PhotoListComponent: ${this.photos.length}`); }
         , (erroObservado) => { console.error(erroObservado.message); }
       );
   }

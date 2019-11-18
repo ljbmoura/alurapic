@@ -8,7 +8,7 @@
       "name": "Launch Chrome localhost",
       "type": "chrome",
       "request": "launch",
-      "port": 9256,
+      "port": 9231,
       "webRoot": "${workspaceFolder}",
       "url": "http://localhost:4200/"
     }
