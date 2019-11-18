@@ -3,7 +3,7 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
-import { TokenService } from '../token/token.service';
+import { UserService } from '../user/user.service';
 
 const API_URL = 'http://localhost:3000';
 
@@ -12,7 +12,7 @@ const API_URL = 'http://localhost:3000';
 })
 export class AuthService {
 
-    constructor (private clienteHttp: HttpClient, private tokenGestor: TokenService) {}
+    constructor (private clienteHttp: HttpClient, private usuariosGestao: UserService) {}
 
     authenticate (nomeUsuario: string, senha: string): Observable<HttpResponse<Object>> {
 
@@ -25,7 +25,7 @@ export class AuthService {
             .pipe (
                 tap ( (response) => {
                         const authToken = response.headers.get('x-access-token');
-                        this.tokenGestor.setToken(authToken);
+                        this.usuariosGestao.setToken(authToken);
                         // tslint:disable-next-line: no-console
                         console.debug(`usuário ${nomeUsuario} autenticado com token ${authToken}`);
                     })

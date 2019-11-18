@@ -25,6 +25,12 @@ baixa o `bootstrap` e o instala dentro do projeto como uma dependência, configu
 
 Instalação: `npm install font-awesome@4.7.0`
 
+## JWT decode
+
+para decodificar token no padrão JWT (Json Web Token).
+
+Instalação: `npm install jwt-decode@2.2.0`
+
 # Alurapic
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.7.
