@@ -3,7 +3,8 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 
-import { AuthService } from 'src/app/core/auth.service';
+import { AuthService } from 'src/app/core/auth/auth.service';
+import { PlatformDetectorService } from 'src/app/core/platform/platform-detector.service';
 
 @Component ({
     // Escopo de Página
@@ -14,23 +15,26 @@ export class SigninComponent implements OnInit {
 
     loginForm: FormGroup;
     @ViewChild('userNameInput') userNameInput: ElementRef<HTMLInputElement>;
+    executandoNoNavagador: boolean;
 
     constructor(
         private formBuilder: FormBuilder
         , private authService: AuthService
-        , private router: Router) {}
+        , private router: Router
+        , private platformDetector: PlatformDetectorService) {}
 
     ngOnInit () {
         this.loginForm = this.formBuilder.group( {
             userName: ['flavio', Validators.required]
             , password: ['123', Validators.minLength(3)]
         });
+        this.executandoNoNavagador = this.platformDetector.isPlatformBrowser();
     }
 
     login () {
-        const nomeUsuario: string =
-            // this.loginForm.get('userName').value;
-            this.userNameInput.nativeElement.value;
+
+        const nomeUsuario: string = this.executandoNoNavagador ?
+            this.userNameInput.nativeElement.value : this.loginForm.get('userName').value;
 
         this.authService.authenticate (
             nomeUsuario
@@ -45,7 +49,11 @@ export class SigninComponent implements OnInit {
                 console.error(erroAuteticacao);
                 alert(`Falha na autenticação: ${erroAuteticacao.error.message}`);
                 this.loginForm.reset ();
-                this.userNameInput.nativeElement.focus();
+
+                // executandoNoNavagador && this.userNameInput.nativeElement.focus();
+                if (this.executandoNoNavagador) {
+                    this.userNameInput.nativeElement.focus();
+                }
             }
         )
     }
