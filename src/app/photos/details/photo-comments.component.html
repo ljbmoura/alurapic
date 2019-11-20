@@ -13,14 +13,15 @@
       </li>
   </ul>
   <div class="mt-4">
-    <form>
+    <form [formGroup]="formComments" (submit)="publica()">
       <div class="input-group">
-        <textarea class="form-control"></textarea>
+        <textarea formControlName="comment" class="form-control" placeholder="insira um coment�rio"></textarea>
         <div class="input-group-append">
-          <button class="btn btn-primary pull-left">Publish</button>
+          <button type="submit" [disabled]="formComments.invalid" class="btn btn-primary pull-left">Publish</button>
         </div>
       </div>
+      <ap-vmessage *ngIf="formComments.get('comment').errors?.maxlength" text="maximun 100 characters"></ap-vmessage>
     </form>
   </div>
-<div>
+</div>
   
