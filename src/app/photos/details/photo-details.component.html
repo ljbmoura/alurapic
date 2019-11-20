@@ -1,3 +1,24 @@
-<p>
-  photo-details works!
-</p>
+<div class="bg-white border" *ngIf="(foto$ | async) as foto">
+  <div class="row">
+    <div class="col-lg-8">
+      <ap-photo [url]="foto.url" [description]="foto.description"></ap-photo>
+    </div>
+
+  <div class="col-lg-4">
+    <small>
+      <p class="text-left break-word">{{foto.description}}</p>
+      <hr>
+    </small>
+    <div class="mt-4">
+      <form>
+        <div class="input-group">
+          <textarea class="form-control"></textarea>
+          <div class="input-group-append">
+            <button class="btn btn-primary pull-left">Publish</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>  
+  </div>
+</div>

@@ -9,9 +9,8 @@ import { Observable } from 'rxjs';
 export class PhotoService {
 
   private API = 'http://localhost:3000';
-  constructor(private http: HttpClient) { }
 
-  // https://angular.io/api/common/http/HttpClient#get
+  constructor(private http: HttpClient) {}
 
   listFromUser(userName: String): Observable<Photo[]> {
     return this.http
@@ -32,5 +31,9 @@ export class PhotoService {
     formData.append('allowComments', allowComments ? 'true' : 'false');
     formData.append('imageFile', arquivo);
     return this.http.post(this.API + '/photos/upload', formData);
+  }
+
+  findById(photoId: number) {
+    return this.http.get<Photo> (`${this.API}/photos/${photoId}`);
   }
 }
