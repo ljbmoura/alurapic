@@ -5,6 +5,7 @@ import { Photo } from '../photo/photo';
 import { Observable } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
 import { AlertService } from 'src/app/shared/components/alert/alert.service';
+import { UserService } from 'src/app/core/user/user.service';
 
 @Component({
   // tslint:disable-next-line: component-selector
@@ -16,9 +17,9 @@ export class PhotoDetailsComponent implements OnInit {
   photoId: number;
   observadorExclusao = {
     next: () => {
-      console.log('(observadorExclusao) exclusão realizada com sucesso.');
-      this.alertService.success('Foto removida com sucesso');
-      this.router.navigate(['/']);
+      console.log(`(observadorExclusao) Foto ${this.photoId} excluída com sucesso.`);
+      this.alertService.success('Foto excluída com sucesso');
+      this.router.navigate(['/user', this.gestorUsuario.getUserName()]);
     },
     error: (err: HttpErrorResponse) => {
       const msg = 'erro na exclusão: ';
@@ -31,7 +32,8 @@ export class PhotoDetailsComponent implements OnInit {
   constructor(private route: ActivatedRoute,
     private router: Router,
     private photoService: PhotoService,
-    private alertService: AlertService) { }
+    private alertService: AlertService,
+    private gestorUsuario: UserService) { }
 
   ngOnInit() {
     this.photoId = this.route.snapshot.params['photoId'];
