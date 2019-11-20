@@ -13,7 +13,6 @@ import { VMessageModule } from 'src/app/shared/components/vmessage/vmessage.modu
         CommonModule
         , VMessageModule
         , ReactiveFormsModule
-        , FormsModule
     ]
 })
 export class PhotoFormModule {}
