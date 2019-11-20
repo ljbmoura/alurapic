@@ -34,17 +34,26 @@ export class PhotoService {
   }
 
   findById(photoId: number) {
-    return this.http.get<Photo> (`${this.API}/photos/${photoId}`);
+    return this.http.get<Photo> (
+      `${this.API}/photos/${photoId}`);
+    }
+
+  remove(photoId: number) {
+    return this.http.delete(
+      `${this.API}/photos/${photoId}`);
   }
 
   getComments(photoId: number): Observable<PhotoComment[]> {
-    return this.http.get<PhotoComment[]>(`${this.API}/photos/${photoId}/comments`);
+    return this.http.get<PhotoComment[]>(
+      `${this.API}/photos/${photoId}/comments`);
   }
 
   addComment(photoId: number, commentText: string): Observable<PhotoComment> {
     return this.http.post<PhotoComment>(
-        this.API + '/photos/' + photoId + '/comments',
-        {commentText}
-    );
-  }
+      this.API + '/photos/' + photoId + '/comments',
+      {commentText});
+   }
+
+
+
 }
