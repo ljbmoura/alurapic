@@ -8,6 +8,7 @@ import { PhotosModule } from './photos/photos.module';
 import { ErrorsModule } from './errors/errors.module';
 import { AuthGuard } from './core/auth/auth.guard';
 import { PhotoDetailsComponent } from './photos/details/photo-details.component';
+import { AlertModule } from './shared/components/alert/alert.module';
 
 const routes: Routes = [
     {
@@ -44,6 +45,7 @@ const routes: Routes = [
     RouterModule.forRoot(routes, {useHash: true})
     , ErrorsModule
     , PhotosModule
+    , AlertModule
   ]
   , exports: [RouterModule]
 })

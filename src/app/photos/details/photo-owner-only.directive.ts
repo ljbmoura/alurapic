@@ -11,7 +11,7 @@ import { tap } from 'rxjs/operators';
 export class PhotoOwnerOnlyDirective implements OnInit, OnDestroy {
     @Input() photoOwner: Photo;
     x: any;
-    
+
     constructor(
         private elementoDOM: ElementRef<HTMLSpanElement>
         , private gestor: UserService
@@ -21,6 +21,7 @@ export class PhotoOwnerOnlyDirective implements OnInit, OnDestroy {
     ngOnInit(): void {
         const usuarioObserver = {
             next: (usuario: User) => {
+                // tslint:disable-next-line: no-console
                 console.debug('observador do usuário next');
                 if ( !usuario || this.photoOwner.userId !== usuario.id) {
                     this.renderer.setStyle(this.elementoDOM.nativeElement, 'display', 'none');
