@@ -6,5 +6,12 @@ import { Component, Input } from '@angular/core';
     templateUrl: './card.component.html'
 })
 export class CardComponent {
-    @Input() title: string = '';
+    titulo: string;
+    @Input() set title (titulo: string) {
+        this.titulo = titulo;
+    }
+
+    get title () {
+        return this.titulo;
+    }
 }
