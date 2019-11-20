@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 @Injectable({
     providedIn: 'root'
 })
-export class AuthGuard implements CanActivate {
+export class LoginGuard implements CanActivate {
 
     constructor (private userService: UserService
         , private router: Router) {}
@@ -16,9 +16,9 @@ export class AuthGuard implements CanActivate {
         , state: RouterStateSnapshot)
         : boolean | Observable<boolean> | Promise<boolean> {
 
-        if (!this.userService.isLoggeg()) {
-            console.log(`rota "${state.url}" não permitida para usuário sem sessão ativa`);
-            this.router.navigate(['']);
+        if (this.userService.isLoggeg()) {
+            console.log(`rota "${state.url}" não permitida para usuário com sessão ativa`);
+            this.router.navigate(['user', this.userService.getUserName()]);
             return false;
         }
         return true;
