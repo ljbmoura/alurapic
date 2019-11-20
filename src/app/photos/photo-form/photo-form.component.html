@@ -1,7 +1,7 @@
 <div class="container">
-  <form class="row" [formGroup]="photoForm">
+  <form class="row" [formGroup]="photoForm" (submit)="upload()">
     <div class="col-md-6 text-center">
-      <input type="file" accept="image/*" formControlName="file">
+      <input type="file" accept="image/*" formControlName="file" (change)="arquivo = $event.target.files[0]">
       <ap-vmessage text="Please, select a photo" 
         *ngIf="photoForm.get('file').errors?.required"></ap-vmessage>
     </div>
@@ -10,7 +10,8 @@
       <div class="form-group">
         <textarea class="form-control form-control-sm" placeholder="photo description"
           formControlName="description"></textarea>
-        <ap-vmessage text="Maximun of 300 characters" *ngIf="photoForm.get('description').errors?.maxlength"></ap-vmessage>
+        <ap-vmessage text="Maximun of 300 characters" 
+        *ngIf="photoForm.get('description').errors?.maxlength"></ap-vmessage>
       </div>
 
       <div class="form-group">
@@ -18,7 +19,7 @@
         <input class="ml-2" type="checkbox" formControlName="allowComments">
       </div>
 
-      <button class="btn btn-primary btn-block" type="submit">Upload</button>
+      <button class="btn btn-primary btn-block" type="submit" [disabled]="photoForm.invalid">Upload</button>
 
       <a class="btn btn-secondary btn-block">Cancel</a>
     </div>
