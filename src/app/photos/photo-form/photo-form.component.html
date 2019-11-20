@@ -1,13 +1,20 @@
 <div class="container">
   <form class="row" [formGroup]="photoForm" (submit)="upload()">
     <div class="col-md-6 text-center">
-      <input type="file" accept="image/*" formControlName="file" (change)="arquivo = $event.target.files[0]" 
-        hidden #fileInput>
-      <button class="btn btn-primary" type="button" (click)="fileInput.click()">
-        <i class="fa fa-image fa-4x align-middle"></i>
-      </button>
-      <ap-vmessage text="Please, select a photo" 
-        *ngIf="photoForm.get('file').errors?.required"></ap-vmessage>
+      <div class="form-group" *ngIf="!arquivoBase64ParaPreview; else preview">
+        <input type="file" accept="image/*" formControlName="file" (change)="trataPreview($event.target.files[0])" 
+          hidden #fileInput>
+        <button class="btn btn-primary" type="button" (click)="fileInput.click()">
+          <i class="fa fa-image fa-4x align-middle"></i>
+        </button>
+        <ap-vmessage text="Please, select a photo" 
+          *ngIf="photoForm.get('file').errors?.required"></ap-vmessage>
+      </div>
+      <ng-template #preview>
+        <div class="text-center">
+          <ap-photo [url]="arquivoBase64ParaPreview" [description]="photoForm.get('description').value" ></ap-photo>
+        </div>
+      </ng-template>
     </div>
 
     <div class="col-md-6">

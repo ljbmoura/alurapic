@@ -13,7 +13,8 @@ import { PhotoService } from '../photo/photo.service';
 export class PhotoFormComponent implements OnInit {
 
   photoForm: FormGroup;
-  arquivo: File;
+  arquivoParaUpload: File;
+  arquivoBase64ParaPreview = '';
 
   constructor(private builder: FormBuilder
     , private service: PhotoService
@@ -22,7 +23,7 @@ export class PhotoFormComponent implements OnInit {
   ngOnInit() {
     this.photoForm = this.builder.group(
       {
-          file: ['', Validators.required]
+        file: ['', Validators.required]
         , description: ['', Validators.maxLength(300)]
         , allowComments: [true]
       }
@@ -31,9 +32,9 @@ export class PhotoFormComponent implements OnInit {
 
   upload() {
     this.service.upload(
-        this.photoForm.get('description').value
+      this.photoForm.get('description').value
       , this.photoForm.get('allowComments').value
-      , this.arquivo)
+      , this.arquivoParaUpload)
     .subscribe(
       () => {
         console.log('upload realizado');
@@ -43,6 +44,17 @@ export class PhotoFormComponent implements OnInit {
         console.error(`upload falhou: "${erro.message}"`);
       }
     );
+  }
+
+  trataPreview(arquivoEscolhido: File) {
+    this.arquivoParaUpload = arquivoEscolhido;
+    const leitor: FileReader = new FileReader();
+    // reader.onload = (ev: ProgressEvent) => {this.arquivoBase64ParaPreview = ev.target.result; };
+    leitor.onloadend = function (ev: ProgressEvent) {
+      this.arquivoBase64ParaPreview = leitor.target.result;
+      // this.arquivoBase64ParaPreview = ev.target.result;
+    };
+    leitor.readAsDataURL(this.arquivoParaUpload);
   }
 
 }
