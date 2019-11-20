@@ -17,13 +17,31 @@ No pasta do projeto da API, atualizar a versão do `sqlite3`
 
     npm install sqlite3
 
-## npm install bootstrap@4.1.1
+## Executando o serviço/api  de dados
+ 1) cd \desenv\treinamento2019\api
+ 2) npm start
+
+## Executando o servidor de desenvolvimento (Development server)
+
+1) cd \desenv\treinamento2019\alurapic
+2) npm start: roda o script `ng serve --open` para iniciar o servidor e abrir o browser, contido dentro de package.json.
+
+Obs: Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+
+## Bootstrap
+instalação: `npm install bootstrap@4.1.1`
+
 baixa o `bootstrap` e o instala dentro do projeto como uma dependência, configurando-a em `package.json`.
 
 ## Font Awesome 
 [Font Awesome](https://fontawesome.com/): possui ícones, etc.
 
 Instalação: `npm install font-awesome@4.7.0`
+
+## Bootstrap
+instalação: `npm install bootstrap@4.1.1`
+
+baixa o `bootstrap` e o instala dentro do projeto como uma dependência, configurando-a em `package.json`.
 
 ## JWT decode
 
