@@ -13,7 +13,7 @@ const routes: Routes = [
     {
         path: '',
         pathMatch: 'full',
-         redirectTo: 'home',
+        redirectTo: 'home',
     }
      , {
          path: 'home',
@@ -32,7 +32,7 @@ const routes: Routes = [
     }, {
         path: 'p/:photoId',
         component: PhotoDetailsComponent
-        , canActivate: [AuthGuard]
+        // , canActivate: [AuthGuard]
     }, {
         path: '**',
         component: NotFoundComponent
