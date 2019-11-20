@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { PhotoService } from '../photo/photo.service';
-import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { HttpErrorResponse } from '@angular/common/http';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
+import { PhotoService } from '../photo/photo.service';
 
 @Component({
   // tslint:disable-next-line: component-selector
@@ -32,15 +33,16 @@ export class PhotoFormComponent implements OnInit {
     this.service.upload(
         this.photoForm.get('description').value
       , this.photoForm.get('allowComments').value
-      , this.arquivo).subscribe(
-          () => {
-            console.log('upload realizado');
-            this.router.navigate(['']);
-          }
-          , (erro: HttpErrorResponse) => {
-            console.error(`upload falhou: "${erro.message}"`);
-          }
-      );
+      , this.arquivo)
+    .subscribe(
+      () => {
+        console.log('upload realizado');
+        this.router.navigate(['']);
+      }
+      , (erro: HttpErrorResponse) => {
+        console.error(`upload falhou: "${erro.message}"`);
+      }
+    );
   }
 
 }
