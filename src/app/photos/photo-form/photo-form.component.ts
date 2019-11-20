@@ -49,11 +49,8 @@ export class PhotoFormComponent implements OnInit {
   trataPreview(arquivoEscolhido: File) {
     this.arquivoParaUpload = arquivoEscolhido;
     const leitor: FileReader = new FileReader();
-    // reader.onload = (ev: ProgressEvent) => {this.arquivoBase64ParaPreview = ev.target.result; };
-    leitor.onloadend = function (ev: ProgressEvent) {
-      this.arquivoBase64ParaPreview = leitor.target.result;
-      // this.arquivoBase64ParaPreview = ev.target.result;
-    };
+    // leitor.onload = (ev: any) => {this.arquivoBase64ParaPreview = ev.target.result; };
+    leitor.onloadend = (ev: any) => {this.arquivoBase64ParaPreview = ev.target.result; };
     leitor.readAsDataURL(this.arquivoParaUpload);
   }
 

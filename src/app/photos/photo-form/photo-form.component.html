@@ -2,8 +2,8 @@
   <form class="row" [formGroup]="photoForm" (submit)="upload()">
     <div class="col-md-6 text-center">
       <div class="form-group" *ngIf="!arquivoBase64ParaPreview; else preview">
-        <input type="file" accept="image/*" formControlName="file" (change)="trataPreview($event.target.files[0])" 
-          hidden #fileInput>
+        <input immediateClick type="file" accept="image/*" formControlName="file" (change)="trataPreview($event.target.files[0])" 
+          hidden #fileInput >
         <button class="btn btn-primary" type="button" (click)="fileInput.click()">
           <i class="fa fa-image fa-4x align-middle"></i>
         </button>
