@@ -12,20 +12,25 @@ export class PhotoListComponent implements OnInit {
   photos: Photo[] = [];
   filtroLista = '';
   // debounce: Subject<string> = new Subject<string>();
-  hasMore: boolean = true;
-  currentPage: number = 1;
-  userName: string = '';
+  hasMore = true;
+  currentPage = 1;
+  userName = '';
 
   constructor(private activatedRoute: ActivatedRoute,
     private photoService: PhotoService) {
-    console.log('construtor de PhotoListComponent executado.');
+    // tslint:disable-next-line: no-console
+    console.debug('construtor de PhotoListComponent executado.');
   }
 
   ngOnInit(): void {
-
-    this.userName = this.activatedRoute.snapshot.params.userName;
-    this.photos = this.activatedRoute.snapshot.data['fotos']; // ou .snapshot.data.photos;
-    console.log(`this.photos recebeu ${this.photos.length} itens.`);
+    console.log('PhotoListComponent: entrou em ngOnInit');
+    this.activatedRoute.params.subscribe(
+      parametrosRotaAtivada => {
+        this.userName = parametrosRotaAtivada['userName']; // ou
+        this.photos = this.activatedRoute.snapshot.data['fotos']; // ou .snapshot.data.photos;
+        console.log(`PhotoListComponent: recebeu ${this.photos.length} itens.`);
+      }
+    );
   }
 
   load() {
