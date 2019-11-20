@@ -1,7 +1,7 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { UserService } from '../../user/user.service';
-import { User } from '../../user/user';
-import { Subject, Observable } from 'rxjs';
+import { Component} from '@angular/core';
+import { UserService } from '../user/user.service';
+import { User } from '../user/user';
+import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 
 @Component({
