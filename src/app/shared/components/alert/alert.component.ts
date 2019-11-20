@@ -1,7 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Alert, AlertType } from './alert';
 import { AlertService } from './alert.service';
-import { noComponentFactoryError } from '@angular/core/src/linker/component_factory_resolver';
 
 @Component({
   // tslint:disable-next-line: component-selector
@@ -10,7 +9,7 @@ import { noComponentFactoryError } from '@angular/core/src/linker/component_fact
 })
 export class AlertComponent implements OnInit {
 
-  @Input() timeout = 3000;
+  @Input() timeout = 15000;
   alerts: Alert[] = [];
 
   constructor(private servico: AlertService) { }
@@ -39,7 +38,7 @@ export class AlertComponent implements OnInit {
   }
 
   removeAlert(alertaARemover: Alert) {
-    this.alerts.filter(aManter => aManter != alertaARemover);
+    this.alerts = this.alerts.filter(aManter => aManter != alertaARemover);
   }
 
   getAlertClass(alert:  Alert) {
