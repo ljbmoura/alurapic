@@ -11,19 +11,16 @@ import { Observable } from 'rxjs';
 })
 export class PhotoDetailsComponent implements OnInit {
   foto$: Observable<Photo>;
+  photoId: number;
 
   constructor(private route: ActivatedRoute,
     private photoService: PhotoService) { }
 
   ngOnInit() {
-    const photoId = this.route.snapshot.params['photoId'];
-    console.log(`recuperando detalhes da foto de id = ${photoId}`);
+    this.photoId = this.route.snapshot.params['photoId'];
+    console.log(`recuperando detalhes da foto de id = ${this.photoId}`);
     this.foto$ = this.photoService
-      .findById(photoId);
-    // .subscribe(
-    //   (retorno: Photo) => this.foto = retorno,
-    //   (erro: HttpErrorResponse) => console.error(erro)
-    // );
+      .findById(this.photoId);
   }
 
 }
