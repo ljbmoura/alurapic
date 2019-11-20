@@ -13,6 +13,18 @@ import { HttpErrorResponse } from '@angular/common/http';
 export class PhotoDetailsComponent implements OnInit {
   foto$: Observable<Photo>;
   photoId: number;
+  observadorExclusao = {
+    next: () => {
+      console.log('(observadorExclusao) exclusão realizada com sucesso.');
+      this.router.navigate(['/']);
+    },
+    error: (err: HttpErrorResponse) => {
+      const msg = 'erro na exclusão: ';
+      console.error(`(observadorExclusao) "${msg}${JSON.stringify(err)}"`);
+      alert(msg + `${err.message}`);
+    },
+    complete: () => console.log('(observadorExclusao) completado.'),
+  };
 
   constructor(private route: ActivatedRoute,
     private router: Router,
@@ -25,18 +37,7 @@ export class PhotoDetailsComponent implements OnInit {
   }
 
   exclui () {
-    const observadorExclusao = {
-      next: () => {
-        console.log('(observadorExclusao) exclusão realizada com sucesso.');
-        this.router.navigate(['/']);
-      },
-      error: (err: HttpErrorResponse) => {
-        const msg = 'erro na exclusão: ';
-        console.error(`(observadorExclusao) "${msg}${JSON.stringify(err)}"`);
-        alert(msg + `${err.message}`);
-      },
-      complete: () => console.log('(observadorExclusao) completado.'),
-    };
-    this.photoService.remove(this.photoId).subscribe (observadorExclusao);
+    this.photoService.remove(this.photoId)
+      .subscribe (this.observadorExclusao);
   }
 }
