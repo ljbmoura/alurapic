@@ -12,6 +12,7 @@ import { LoadButtonComponent } from './load-button/load-button.component';
 import { FilterByDescriptionPipe } from './filter-by-description.pipe';
 import { SearchComponent } from './search/search.component';
 import { RouterModule } from '@angular/router';
+import { ShowIfLoggedModule } from 'src/app/shared/directives/show-if-logged/show-if-logged.module';
 
 @NgModule({
     declarations: [
@@ -24,10 +25,11 @@ import { RouterModule } from '@angular/router';
     imports: [
         CommonModule
         , HttpClientModule
+        , RouterModule
         , PhotoModule
         , CardModule
         , DarkenOnHoverModule
-        , RouterModule
+        , ShowIfLoggedModule
     ]
 })
 export class PhotoListModule {}

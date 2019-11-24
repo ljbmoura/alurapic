@@ -1,8 +1,8 @@
-import { Directive, Input, ElementRef, OnInit, Renderer, Renderer2, OnDestroy } from '@angular/core';
+import { Directive, Input, ElementRef, OnInit, Renderer2, OnDestroy } from '@angular/core';
 import { Photo } from '../photo/photo';
 import { UserService } from 'src/app/core/user/user.service';
 import { User } from 'src/app/core/user/user';
-import { tap } from 'rxjs/operators';
+// import { tap } from 'rxjs/operators';
 
 @Directive({
     // tslint:disable-next-line: directive-selector
