@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpErrorResponse } from '@angular/common/http';
 import { Photo } from './photo';
-import { Observable } from 'rxjs';
+import { Observable, of, throwError } from 'rxjs';
 import { PhotoComment } from './photoComment';
+import { map, catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -54,6 +55,17 @@ export class PhotoService {
       {commentText});
    }
 
-
+  like(photoId: number): Observable<Boolean> {
+    return this.http.post(
+        `${this.API}/photos/${photoId}/like`
+        , {}
+        , {observe: 'response'} // observador que viabiliza acesso a resposta http
+      )
+      .pipe(map(() => true))
+      .pipe(catchError( (err: HttpErrorResponse) => {
+          return err.status === 304 ? of(false) : throwError (err);
+        })
+      );
+  }
 
 }
