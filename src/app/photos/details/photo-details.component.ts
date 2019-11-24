@@ -29,6 +29,18 @@ export class PhotoDetailsComponent implements OnInit {
     complete: () => console.log('(observadorExclusao) completado.'),
   };
 
+  observadorBusca = {
+    next: () => {
+      console.log(`(observadorBusca) Foto ${this.photoId} recuperada com sucesso.`);
+    },
+    error: (err: HttpErrorResponse) => {
+      const msg = 'erro na busca: ';
+      console.error(`(observadorBusca) "${msg}${JSON.stringify(err)}"`);
+      this.router.navigate(['not-found']);
+    },
+    complete: () => console.log('(observadorBusca) completado.'),
+  };
+
   constructor(private route: ActivatedRoute,
     private router: Router,
     private photoService: PhotoService,
@@ -37,8 +49,9 @@ export class PhotoDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.photoId = this.route.snapshot.params['photoId'];
-    console.log(`recuperando detalhes da foto de id = ${this.photoId}`);
+    // console.log(`recuperando detalhes da foto de id = ${this.photoId}`);
     this.foto$ = this.photoService.findById(this.photoId);
+    this.foto$.subscribe(this.observadorBusca);
   }
 
   exclui () {

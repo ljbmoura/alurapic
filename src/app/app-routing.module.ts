@@ -34,8 +34,11 @@ const routes: Routes = [
         component: PhotoDetailsComponent
         // , canActivate: [AuthGuard]
     }, {
-        path: '**',
+        path: 'not-found',
         component: NotFoundComponent
+    }, {
+        path: '**',
+        redirectTo: 'not-found'
     }
 ];
 
