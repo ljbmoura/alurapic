@@ -4,8 +4,9 @@ import { AbstractControl } from '@angular/forms';
 import { debounceTime, switchMap, first, map } from 'rxjs/operators';
 import { UsuarioReg } from './usuarioReg';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
-const API = 'http://localhost:3000';
+const API = environment.apiUrl;
 
 @Injectable()
 export class SignUpService {

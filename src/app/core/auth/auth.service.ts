@@ -4,8 +4,9 @@ import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
 import { UserService } from '../user/user.service';
+import { environment } from 'src/environments/environment.prod';
 
-const API_URL = 'http://localhost:3000';
+const API = environment.apiUrl;
 
 @Injectable ({
     providedIn: 'root'
@@ -18,7 +19,7 @@ export class AuthService {
 
         return this.clienteHttp
             .post (
-                API_URL + '/user/login'
+                API + '/user/login'
                 , { userName: nomeUsuario, password: senha}
                 , { observe: 'response', responseType: 'json'}
             )
