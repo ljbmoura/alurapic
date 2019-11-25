@@ -9,7 +9,7 @@
         <p class="text-left break-word">{{foto.description}}</p>
         <div class="text-left mb-4">
           <i class="fa fa-comment-o fa-2x mr-2 ml-2"></i>{{foto.comments}}
-          <i showIfLogged class="fa fa-heart-o fa-2x mr-2 pull-left">{{foto.likes}}</i>
+          <i (click)="like(foto)" showIfLogged class="fa fa-heart-o fa-2x mr-2 pull-left">{{foto.likes}}</i>
           <span photoOwnerOnly [photoOwner]="foto" class="fa fa-trash-o fa-2x pull-right" (click)="exclui()"></span>
         </div>
         <hr>

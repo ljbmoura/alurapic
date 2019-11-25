@@ -58,4 +58,22 @@ export class PhotoDetailsComponent implements OnInit {
     this.photoService.remove(this.photoId)
       .subscribe (this.observadorExclusao);
   }
+
+  like (foto: Photo) {
+    this.photoService
+      .like(foto.id)
+      .subscribe( {
+        next: (liked) => {
+          if (liked) {
+            this.foto$ = this.photoService.findById(foto.id);
+          }
+        },
+        error: (err) => {
+          console.error(`erro no like: ${JSON.stringify(err)}`);
+        },
+        // tslint:disable-next-line: no-console
+        complete: () => console.debug('observador de likes completado')
+      }
+      );
+  }
 }
