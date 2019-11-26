@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 
 import { AuthService } from 'src/app/core/auth/auth.service';
 import { PlatformDetectorService } from 'src/app/core/platform/platform-detector.service';
+import { Title } from '@angular/platform-browser';
 
 @Component ({
     // Escopo de Página
@@ -21,9 +22,11 @@ export class SigninComponent implements OnInit {
         private formBuilder: FormBuilder
         , private authService: AuthService
         , private router: Router
-        , private platformDetector: PlatformDetectorService) {}
+        , private platformDetector: PlatformDetectorService
+        , private titleService: Title) {}
 
     ngOnInit () {
+        this.titleService.setTitle('Singin');
         this.loginForm = this.formBuilder.group( {
             userName: ['flavio', Validators.required]
             , password: ['123', Validators.minLength(3)]
