@@ -14,28 +14,38 @@ const routes: Routes = [
         path: '',
         pathMatch: 'full',
         redirectTo: 'home',
-    }
-     , {
+    }, {
          path: 'home',
          loadChildren: './home/home.module#HomeModule'
-       }
-    , {
+    }, {
         path: 'user/:userName',
         component: PhotoListComponent,
         resolve: {
             fotos: PhotoListResolver
+        },
+        data: {
+            title: 'Timeline'
         }
     }, {
         path: 'p/add',
         component: PhotoFormComponent
         , canActivate: [AuthGuard]
+        , data: {
+            title: 'Photo upload'
+        }
     }, {
         path: 'p/:photoId',
-        component: PhotoDetailsComponent
+        component: PhotoDetailsComponent,
         // , canActivate: [AuthGuard]
+        data: {
+            title: 'Photo detail'
+        }
     }, {
         path: 'not-found',
-        component: NotFoundComponent
+        component: NotFoundComponent,
+        data: {
+            title: 'Not found'
+        }
     }, {
         path: '**',
         redirectTo: 'not-found'

@@ -6,7 +6,7 @@ import { PhotoComment } from './photoComment';
 import { map, catchError } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 
-const API = environment.apiUrl;
+const API = environment.ApiUrl;
 
 @Injectable({
   providedIn: 'root'

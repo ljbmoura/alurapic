@@ -6,7 +6,7 @@ import { UsuarioReg } from './usuarioReg';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 
-const API = environment.apiUrl;
+const API = environment.ApiUrl;
 
 @Injectable()
 export class SignUpService {

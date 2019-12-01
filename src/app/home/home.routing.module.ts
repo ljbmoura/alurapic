@@ -13,9 +13,15 @@ const routes: Routes = [
             {
                 path: ''
                 , component: SigninComponent
+                , data: {
+                    title: 'Sign in'
+                }
             }, {
                 path: 'signup'
                 , component: SignUpComponent
+                , data: {
+                    title: 'Sign up'
+                }
             }
         ]
     }
