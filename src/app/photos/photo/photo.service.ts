@@ -13,33 +13,37 @@ const API = environment.ApiUrl;
 })
 export class PhotoService {
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   listFromUser(userName: String): Observable<Photo[]> {
     return this.http
-    .get<Photo[]>(`${API}/${userName}/photos`);
+      .get<Photo[]>(`${API}/${userName}/photos`);
   }
 
   listFromUserPaginated(userName: string, page: number) {
     const queryString = new HttpParams()
-    .append('page', page.toString());
+      .append('page', page.toString());
 
     return this.http
-    .get<Photo[]>(API + '/' + userName + '/photos', {params: queryString});
+      .get<Photo[]>(API + '/' + userName + '/photos', { params: queryString });
   }
 
   upload(description: string, allowComments: boolean, arquivo: File) {
     const formData = new FormData();
-    formData.append('description',  description);
+    formData.append('description', description);
     formData.append('allowComments', allowComments ? 'true' : 'false');
     formData.append('imageFile', arquivo);
-    return this.http.post(API + '/photos/upload', formData);
+    return this.http.post(API + '/photos/upload', formData
+      , {
+        observe: 'events'
+        , reportProgress: true
+      });
   }
 
   findById(photoId: number) {
-    return this.http.get<Photo> (
+    return this.http.get<Photo>(
       `${API}/photos/${photoId}`);
-    }
+  }
 
   remove(photoId: number) {
     return this.http.delete(
@@ -54,19 +58,19 @@ export class PhotoService {
   addComment(photoId: number, commentText: string): Observable<PhotoComment> {
     return this.http.post<PhotoComment>(
       API + '/photos/' + photoId + '/comments',
-      {commentText});
-   }
+      { commentText });
+  }
 
   like(photoId: number): Observable<Boolean> {
     return this.http.post(
-        `${API}/photos/${photoId}/like`
-        , {}
-        , {observe: 'response'} // observador que viabiliza acesso a resposta http
-      )
+      `${API}/photos/${photoId}/like`
+      , {}
+      , { observe: 'response' } // observador que viabiliza acesso a resposta http
+    )
       .pipe(map(() => true))
-      .pipe(catchError( (err: HttpErrorResponse) => {
-          return err.status === 304 ? of(false) : throwError (err);
-        })
+      .pipe(catchError((err: HttpErrorResponse) => {
+        return err.status === 304 ? of(false) : throwError(err);
+      })
       );
   }
 }

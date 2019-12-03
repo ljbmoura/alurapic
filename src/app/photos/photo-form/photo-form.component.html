@@ -29,10 +29,16 @@
         <label class="text-muted">Allow comments</label>
         <input class="ml-2" type="checkbox" formControlName="allowComments">
       </div>
+      <div *ngIf="!percentDone; else percent">
+        <button class="btn btn-primary btn-block" type="submit" [disabled]="photoForm.invalid">Upload</button>
+        <a  class="btn btn-secondary btn-block">Cancel</a>
+      </div>
+      <ng-template #percent>
+        <div class="text-center display-4">
+          uploading {{ percentDone }}%
+        </div>
+      </ng-template>
 
-      <button class="btn btn-primary btn-block" type="submit" [disabled]="photoForm.invalid">Upload</button>
-
-      <a class="btn btn-secondary btn-block">Cancel</a>
     </div>
   </form>
 </div>

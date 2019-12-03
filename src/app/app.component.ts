@@ -11,7 +11,7 @@ import { filter, map, switchMap } from 'rxjs/operators';
 export class AppComponent implements OnInit {
 
   // title = 'alurapic';
-  constructor (private router: Router, private activatedRoute: ActivatedRoute, private titleService: Title) {}
+  constructor(private router: Router, private activatedRoute: ActivatedRoute, private titleService: Title) { }
 
   ngOnInit(): void {
     this.router.events
