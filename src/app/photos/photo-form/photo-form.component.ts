@@ -47,7 +47,7 @@ export class PhotoFormComponent implements OnInit {
       .subscribe(
         (event: HttpEvent<any>) => {
           if (event.type === HttpEventType.UploadProgress) {
-            this.percentDone = event.loaded;
+            this.percentDone = (event.loaded / event.total) * 100.00;
             console.log('uploading ' + this.percentDone);
           } else if (event instanceof HttpResponse) {
             console.log('upload realizado');
